@@ -8,8 +8,8 @@ import requests
 class IndexingGoogle:
     SCOPES = ['https://www.googleapis.com/auth/indexing']
 
-    def __init__(self):
-        self.credentials_file = None
+    def __init__(self, credentials_file):
+        self.credentials_file = credentials_file
 
     def set_credentials(self, credentials_file):
         self.credentials_file = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, scopes=IndexingGoogle.SCOPES)
