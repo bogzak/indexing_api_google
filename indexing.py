@@ -9,8 +9,9 @@ class IndexingGoogle:
     def __init__(self):
         self.credentials_file = None
 
-    def set_credentials(self, credentials_file):
-        self.credentials_file = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, scopes=IndexingGoogle.SCOPES)
+    def set_credentials(self, credentials):
+        credentials_dict = json.loads(credentials)
+        self.credentials_file = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict, scopes=IndexingGoogle.SCOPES)
 
     def get_links(self, file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
