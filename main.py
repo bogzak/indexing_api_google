@@ -15,7 +15,7 @@ def main():
     option = st.radio('Choose an option:', ('URL_UPDATED', 'URL_DELETED'))
 
     # Send URLs button
-    if st.button('Send URLs for indexing'):
+    if st.button('Send URLs'):
         urls = url_list.strip().split('\n') if url_list.strip() else []
         indexing_google = IndexingGoogle()
 
