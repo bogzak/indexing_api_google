@@ -32,10 +32,11 @@ class IndexingGoogle:
         if 'error' in result:
             return f'Error({result["error"]["code"]} - {result["error"]["status"]}): {result["error"]["message"]}'
         else:
-            return f'URL: {result["urlNotificationMetadata"]["url"]}\n \
-                   latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n \
-                   Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n \
-                   Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
+            return f'Status code: {response.status_code}\n' \
+                   f'URL: {result["urlNotificationMetadata"]["url"]}\n' \
+                   f'latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n' \
+                   f'Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n' \
+                   f'Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
 
     def send_urls(self, urls):
         if not self.credentials_file:
