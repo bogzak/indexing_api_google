@@ -1,3 +1,4 @@
+from oauth2client.service_account import ServiceAccountCredentials
 import os
 import glob
 import json
@@ -5,11 +6,13 @@ import requests
 
 
 class IndexingGoogle:
+    SCOPES = ['https://www.googleapis.com/auth/indexing']
+
     def __init__(self):
         self.credentials_file = None
 
     def set_credentials(self, credentials_file):
-        self.credentials_file = credentials_file
+        self.credentials_file = ServiceAccountCredentials.from_json_keyfile_name(credentials_file, scopes=IndexingGoogle.SCOPES)
 
     def get_links(self, file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -34,7 +37,9 @@ class IndexingGoogle:
     def send_urls(self, urls):
         if not self.credentials_file:
             return "Error: Credentials file not set"
-
-        for url in urls:
-            result = self.index_url(url)
-            print(result)
+        try:
+            for url in urls:
+                result = self.index_url(url)
+                print(result)
+        except Exception as ex:
+            print(ex)
