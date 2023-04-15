@@ -23,7 +23,7 @@ def main():
             credentials = credentials_file.read().decode('utf-8-sig')
             if credentials:
                 indexing_google.set_credentials(credentials)
-                result = indexing_google.send_urls(urls)
+                result = indexing_google.send_urls(urls, option)
                 st.write(result)
             else:
                 st.write('Error: Credentials file is empty')
