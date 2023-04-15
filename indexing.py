@@ -37,9 +37,10 @@ class IndexingGoogle:
         if not self.credentials_file:
             return "Error: Credentials file not set"
         try:
+            results = []
             for url in urls:
                 result = self.index_url(url)
-                print('OK')
-                print(result)
+                results.append(result)
+            return results
         except Exception as ex:
-            print(ex)
+            return [str(ex)]
