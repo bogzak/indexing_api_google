@@ -22,8 +22,12 @@ class IndexingGoogle:
         ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
         content = {'url': url.strip(), 'type': "URL_UPDATED"}
         json_ctn = json.dumps(content)
-        response = requests.post(ENDPOINT, params={'access_token': self.credentials_file}, data=json_ctn)
-
+        # response = requests.post(ENDPOINT, params={'access_token': self.credentials_file}, data=json_ctn)
+        response = requests.post(
+            ENDPOINT,
+            headers={"Authorization": "Bearer " + self.credentials_file.get_access_token().access_token},
+            json=content
+        )
         result = json.loads(response.content.decode())
         if "error" in result:
             return f"Error({result['error']['code']} - {result['error']['status']}): {result['error']['message']}"
