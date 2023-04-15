@@ -39,6 +39,7 @@ class IndexingGoogle:
         try:
             for url in urls:
                 result = self.index_url(url)
+                print('OK')
                 print(result)
         except Exception as ex:
             print(ex)
