@@ -18,9 +18,9 @@ class IndexingGoogle:
             links = [link.strip() for link in file.readlines()]
         return links
 
-    def index_url(self, url):
+    def index_url(self, url, option):
         ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
-        content = {'url': url.strip(), 'type': "URL_UPDATED"}
+        content = {'url': url.strip(), 'type': option}
         json_ctn = json.dumps(content)
         # response = requests.post(ENDPOINT, params={'access_token': self.credentials_file}, data=json_ctn)
         response = requests.post(
@@ -38,13 +38,13 @@ class IndexingGoogle:
                    f'Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n' \
                    f'Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
 
-    def send_urls(self, urls):
+    def send_urls(self, urls, option):
         if not self.credentials_file:
             return 'Error: Credentials file not set'
         try:
             results = []
             for url in urls:
-                result = self.index_url(url)
+                result = self.index_url(url, option)
                 results.append(result)
             return results
         except Exception as ex:

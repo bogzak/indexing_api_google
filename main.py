@@ -11,6 +11,9 @@ def main():
     # URL list input
     url_list = st.text_area('Enter URLs to be indexed, separated by a new line')
 
+    # Define a radio button to allow user to choose between "URL_UPDATED" and "URL_DELETED"
+    option = st.radio('Choose an option:', ('URL_UPDATED', 'URL_DELETED'))
+
     # Send URLs button
     if st.button('Send URLs for indexing'):
         urls = url_list.strip().split('\n') if url_list.strip() else []
