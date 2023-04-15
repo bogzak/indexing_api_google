@@ -25,21 +25,21 @@ class IndexingGoogle:
         # response = requests.post(ENDPOINT, params={'access_token': self.credentials_file}, data=json_ctn)
         response = requests.post(
             ENDPOINT,
-            headers={"Authorization": "Bearer " + self.credentials_file.get_access_token().access_token},
+            headers={'Authorization': 'Bearer ' + self.credentials_file.get_access_token().access_token},
             json=content
         )
         result = json.loads(response.content.decode())
-        if "error" in result:
-            return f"Error({result['error']['code']} - {result['error']['status']}): {result['error']['message']}"
+        if 'error' in result:
+            return f'Error({result["error"]["code"]} - {result["error"]["status"]}): {result["error"]["message"]}'
         else:
-            return f"urlNotificationMetadata.url: {result['urlNotificationMetadata']['url']}\n" \
-                   f"urlNotificationMetadata.latestUpdate.url: {result['urlNotificationMetadata']['latestUpdate']['url']}\n" \
-                   f"urlNotificationMetadata.latestUpdate.type: {result['urlNotificationMetadata']['latestUpdate']['type']}\n" \
-                   f"urlNotificationMetadata.latestUpdate.notifyTime: {result['urlNotificationMetadata']['latestUpdate']['notifyTime']}"
+            return f'URL: {result["urlNotificationMetadata"]["url"]}\n \
+                   latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n \
+                   Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n \
+                   Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
 
     def send_urls(self, urls):
         if not self.credentials_file:
-            return "Error: Credentials file not set"
+            return 'Error: Credentials file not set'
         try:
             results = []
             for url in urls:
