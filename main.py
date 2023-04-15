@@ -16,7 +16,7 @@ def main():
         indexing_google = IndexingGoogle()
 
         if credentials_file:
-            credentials = credentials_file.read()
+            credentials = credentials_file.read().decode('utf-8')
             indexing_google.set_credentials(credentials)
             result = indexing_google.send_urls(urls)
             st.write(result)

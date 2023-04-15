@@ -1,6 +1,4 @@
 from oauth2client.service_account import ServiceAccountCredentials
-import os
-import glob
 import json
 import requests
 
