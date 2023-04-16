@@ -11,6 +11,7 @@ def main():
     # URL list input
     url_list = st.text_area('Enter URLs, separated by a new line')
 
+    # map the user-friendly display values to the actual values for type
     type_mapping = {
         'Update': 'URL_UPDATED',
         'Delete': 'URL_DELETED'
@@ -19,9 +20,6 @@ def main():
     # Get the user's selection from the app
     user_selection = st.selectbox('Select action', ['Update', 'Delete'])
     option = type_mapping[user_selection]
-
-    # Define a radio button to allow user to choose between "URL_UPDATED" and "URL_DELETED"
-    # option = st.radio('Choose an option:', ('URL_UPDATED', 'URL_DELETED'))
 
     # Send URLs button
     if st.button('Send URLs'):
