@@ -3,7 +3,7 @@ from indexing import IndexingGoogle
 
 
 def main():
-    st.title('Google Indexing')
+    st.title('🌐 Google Indexing')
 
     # JSON credentials file upload
     credentials_file = st.file_uploader('Upload JSON credentials file')
@@ -13,12 +13,12 @@ def main():
 
     # map the user-friendly display values to the actual values for type
     type_mapping = {
-        'Update': 'URL_UPDATED',
-        'Delete': 'URL_DELETED'
+        '🔄 Update': 'URL_UPDATED',
+        '❌ Delete': 'URL_DELETED'
     }
 
     # Get the user's selection from the app
-    user_selection = st.selectbox('Select action', ['Update', 'Delete'])
+    user_selection = st.selectbox('Select action', ['🔄 Update', '❌ Delete'])
     option = type_mapping[user_selection]
 
     # Send URLs button
