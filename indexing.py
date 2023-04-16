@@ -21,7 +21,6 @@ class IndexingGoogle:
     def index_url(self, url, option):
         ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
         content = {'url': url.strip(), 'type': option}
-        json_ctn = json.dumps(content)
         # response = requests.post(ENDPOINT, params={'access_token': self.credentials_file}, data=json_ctn)
         response = requests.post(
             ENDPOINT,
