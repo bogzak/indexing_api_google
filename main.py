@@ -18,7 +18,7 @@ def main():
     }
 
     # Get the user's selection from the app
-    user_selection = st.selectbox('Select action', ['🔄 Update', '❌ Delete'])
+    user_selection = st.selectbox('Select action', ['🔄 Update', '❌ Delete'], index=False)
     option = type_mapping[user_selection]
 
     # Send URLs button
