@@ -33,9 +33,9 @@ def main():
                 result = indexing_google.send_urls(urls, option)
                 st.write(result)
             else:
-                st.write('Error: Credentials file is empty')
+                st.write('🚫 Error: Credentials file is empty')
         else:
-            st.write('Error: No credentials file uploaded')
+            st.write('🚫 Error: No credentials file uploaded')
 
 
 if __name__ == '__main__':
