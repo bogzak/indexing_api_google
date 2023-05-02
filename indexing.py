@@ -28,14 +28,27 @@ class IndexingGoogle:
             json=content
         )
         result = json.loads(response.content.decode())
-        if 'error' in result:
-            return f'Error({result["error"]["code"]} - {result["error"]["status"]}): {result["error"]["message"]}'
+        # if 'error' in result:
+        #     return f'Error({result["error"]["code"]} - {result["error"]["status"]}): {result["error"]["message"]}'
+        # else:
+        #     return f'Status code: {response.status_code}\n' \
+        #            f'URL: {result["urlNotificationMetadata"]["url"]}\n' \
+        #            f'latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n' \
+        #            f'Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n' \
+        #            f'Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
+        if notification_type == "URL_DELETED":
+            if "error" in result:
+                return "Error deleting {}: {} ({})".format(url, result["error"]["message"],
+                                                           result["error"]["code"])
+            else:
+                return "Deleted {}".format(url)
         else:
-            return f'Status code: {response.status_code}\n' \
-                   f'URL: {result["urlNotificationMetadata"]["url"]}\n' \
-                   f'latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n' \
-                   f'Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n' \
-                   f'Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
+            if "error" in result:
+                return "Error indexing {}: {} ({})".format(url, result["error"]["message"],
+                                                           result["error"]["code"])
+            else:
+                return "Indexed {}: {}".format(result["urlNotificationMetadata"]["url"],
+                                              result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"])
 
     def send_urls(self, urls, option):
         if not self.credentials_file:
