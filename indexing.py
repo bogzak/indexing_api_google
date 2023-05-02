@@ -36,7 +36,7 @@ class IndexingGoogle:
         #            f'latestUpdate.url: {result["urlNotificationMetadata"]["latestUpdate"]["url"]}\n' \
         #            f'Type: {result["urlNotificationMetadata"]["latestUpdate"]["type"]}\n' \
         #            f'Time: {result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"]}'
-        if notification_type == "URL_DELETED":
+        if option == "URL_DELETED":
             if "error" in result:
                 return "Error deleting {}: {} ({})".format(url, result["error"]["message"],
                                                            result["error"]["code"])
