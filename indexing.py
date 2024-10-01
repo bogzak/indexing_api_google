@@ -47,8 +47,7 @@ class IndexingGoogle:
                 return "Error indexing {}: {} ({})".format(url, result["error"]["message"],
                                                            result["error"]["code"])
             else:
-                return "Indexed {}: {}".format(result["urlNotificationMetadata"]["url"],
-                                              result["urlNotificationMetadata"]["latestUpdate"]["notifyTime"])
+                return "Indexed {}".format(result["urlNotificationMetadata"]["url"])
 
     def send_urls(self, urls, option):
         if not self.credentials_file:
